@@ -14,7 +14,7 @@ IMPORTANT: YOU NEED AT LEAST BASIC KNOWLEDGE ON SHELL SCRIPTS TO MAKE THESE WORK
 * You should be all set!
 
 ## Todo
-For a list of the things that are still needing to be done, look [here](TODO.md). All help is appricicated.
+For a list of the things that are still needing to be done, look [here](TODO.md). All help is appreciated.
 
 ## Authors
 * OnlyJoking/randomdevlol - Main contributor & Project Manager
