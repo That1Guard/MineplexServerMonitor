@@ -31,7 +31,6 @@ mkdir $pathToServer
 # Make server.properties file and put the properties in the file
 # TODO: find a better and more efficient way of doing this
 touch $pathToServer/server.properties
-
 echo "view-distance=10" > $pathToServer/server.properties
 echo "server-ip=$1" >> $pathToServer/server.properties
 echo "level-seed=" >> $pathToServer/server.properties
