@@ -6,9 +6,9 @@
 # if you do have the linux subsystem installed though that should work
 
 #VARIABLES
-# $SERVERADDRESS = $1
-# $privateAddress = $2
-# $port = $3
+# serverAddress = $1
+# privateAddress = $2
+# port = $3
 # ram = $4
 # world = $5
 # plugin = $6
@@ -25,13 +25,17 @@
 
 pathToServer=../../$9
 
+# Delete the server folder if it already exists cause I'm lazy
+if [ -d $pathToServer ]; then
+    rm -r -f $pathToServer
+fi
+
 # Make the server directory
 mkdir $pathToServer
 
 # Make server.properties file and put the properties in the file
 # TODO: find a better and more efficient way of doing this
 touch $pathToServer/server.properties
-
 echo "view-distance=10" > $pathToServer/server.properties
 echo "server-ip=$1" >> $pathToServer/server.properties
 echo "level-seed=" >> $pathToServer/server.properties
@@ -65,28 +69,26 @@ echo "online-mode=false" >> $pathToServer/server.properties # offline for bungee
 echo "allow-flight=false" >> $pathToServer/server.properties
 
 # Copy server jar into new directory
-cp ../plugins/craftbukkit.jar $pathToServer/
+cp ../jars/craftbukkit.jar $pathToServer/
 
 # Make the plugins folder
 mkdir $pathToServer/plugins
 
 # Copy the main plugin to the server (either Hub or Arcade)
-cp ../plugins/$6 $pathToServer/plugins
+cp ../jars/$6 $pathToServer/plugins
 
 # Check if we should add nocheatplus to the server
 if [ "${11}" = "true" ]; then
-   cp ../plugins/NoCheatPlus.jar $pathToServer/plugins
+   cp ../jars/NoCheatPlus.jar $pathToServer/plugins
 fi
 
 # Check if we should add worldedit to the server
 if [ "${12}" = "true" ]; then
-   cp ../plugins/WorldEdit.jar $pathToServer/plugins
+   cp ../jars/WorldEdit.jar $pathToServer/plugins
 fi
 
 # Copy the world into the server
-if [ "$5" = "world" ]; then
-    cp -r ../maps/Lobby/world $pathToServer/
-fi
+unzip ../worlds/$5 -d $pathToServer/ > /dev/null
 
 # Make the config file & edit it for the server group
 mkdir $pathToServer/$7
@@ -102,6 +104,16 @@ echo "  password: mineplex" >> $pathToServer/$7config.yml
 echo "queue:" >> $pathToServer/$7config.yml
 echo "  us: ${10}" >> $pathToServer/$7config.yml
 
-# Start the server (thanks stackoverflow https://stackoverflow.com/questions/22263204/screen-x-isnt-working-no-screen-found)
-sudo su - root -c "script -c screen /dev/null /bin/bash cd $pathToServer | java -Xmx$4M -jar craftbukkit.jar"
-# ./easyRemoteStartServerCustom.sh 1.1.1.1 1.1.1.1 40000 500 world Hub.jar plugins/Hub/ Test Test-1 true true true
+# here are the attempts I've made trying to get this to work since I barely know a thing about screen, enjoy lol
+# screen -dmS $9
+# screen -S $9 -X cd $pathToServer
+# screen -S $9 -X touch test.txt
+#screen -S $9 -dmS cd ${pathToServer} && java -Xmx${4}M -jar craftbukkit.jar
+#screen -S $9 -X "cd ${pathToServer} && java -Xmx${4}M -jar craftbukkit.jar"
+#sudo su - root -c "script -c screen /dev/null /bin/bash cd $pathToServer | java -Xmx$4M -jar craftbukkit.jar"
+
+
+
+
+# Test command:
+# ./easyRemoteStartServerCustom.sh 127.0.0.1 127.0.0.1 40000 500 lobby.zip Hub.jar plugins/Hub/ Test Test-1 true true true
