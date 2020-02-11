@@ -17,7 +17,7 @@ These are experimental and are not currently working.
 For a list of the things that are still needing to be done, look [here](TODO.md). All help is appreciated.
 
 ## Trouble shooting
-* ***Cannot make directory '/var/run/screen': Permission denied:*** Run ```shell sudo /etc/init.d/screen-cleanup start```
+* ***Cannot make directory '/var/run/screen': Permission denied:*** Run ```sudo /etc/init.d/screen-cleanup start```
 
 ## Authors
 * OnlyJoking/randomdevlol - Main contributor & Project Manager
