@@ -19,11 +19,13 @@
 # noCheatEnabled = ${11}
 # addWorldEdit = ${12}
 
-# if [ $(uname -s) != "Darwin" ] && [ $(uname -s) != "Linux" ]; then
-#     echo "WARNING! Either you're using some weird os or you're using windows. It's recommended you use MacOS or Linux!"
-# fi
+if [ $(uname -s) != "Darwin" ] && [ $(uname -s) != "Linux" ]; then
+    echo "WARNING! Either you're using some weird os or you're using windows. It's recommended you use MacOS or Linux!"
+    exit
+fi
 
 pathToServer=../../$9
+pathToJars=../jars
 
 # Delete the server folder if it already exists cause I'm lazy
 if [ -d $pathToServer ]; then
@@ -69,22 +71,22 @@ echo "online-mode=false" >> $pathToServer/server.properties # offline for bungee
 echo "allow-flight=false" >> $pathToServer/server.properties
 
 # Copy server jar into new directory
-cp ../jars/craftbukkit.jar $pathToServer/
+cp $pathToJars/craftbukkit.jar $pathToServer/
 
 # Make the plugins folder
 mkdir $pathToServer/plugins
 
 # Copy the main plugin to the server (either Hub or Arcade)
-cp ../jars/$6 $pathToServer/plugins
+cp $pathToJars/$6 $pathToServer/plugins
 
 # Check if we should add nocheatplus to the server
 if [ "${11}" = "true" ]; then
-   cp ../jars/NoCheatPlus.jar $pathToServer/plugins
+   cp $pathToJars/NoCheatPlus.jar $pathToServer/plugins
 fi
 
 # Check if we should add worldedit to the server
 if [ "${12}" = "true" ]; then
-   cp ../jars/WorldEdit.jar $pathToServer/plugins
+   cp $pathToJars/WorldEdit.jar $pathToServer/plugins
 fi
 
 # Copy the world into the server
@@ -93,7 +95,7 @@ unzip ../worlds/$5 -d $pathToServer/ > /dev/null
 # Make the config file & edit it for the server group
 mkdir $pathToServer/$7
 touch $pathToServer/$7/config.yml
-echo "webServer: http://127.0.0.1:8080" >> $pathToServer/$7config.yml
+echo "webServer: http://127.0.0.1:8080/" >> $pathToServer/$7config.yml
 echo "serverstatus:" >> $pathToServer/$7config.yml
 echo "  group: $8" >> $pathToServer/$7config.yml
 echo "  name: $9" >> $pathToServer/$7config.yml
@@ -104,16 +106,10 @@ echo "  password: mineplex" >> $pathToServer/$7config.yml
 echo "queue:" >> $pathToServer/$7config.yml
 echo "  us: ${10}" >> $pathToServer/$7config.yml
 
-# here are the attempts I've made trying to get this to work since I barely know a thing about screen, enjoy lol
-# screen -dmS $9
-# screen -S $9 -X cd $pathToServer
-# screen -S $9 -X touch test.txt
-#screen -S $9 -dmS cd ${pathToServer} && java -Xmx${4}M -jar craftbukkit.jar
-#screen -S $9 -X "cd ${pathToServer} && java -Xmx${4}M -jar craftbukkit.jar"
-#sudo su - root -c "script -c screen /dev/null /bin/bash cd $pathToServer | java -Xmx$4M -jar craftbukkit.jar"
 
-
-
+cd $pathToServer
+screen -dmS $9
+screen -S $9 -X exec java -Xmx$4M -jar craftbukkit.jar
 
 # Test command:
 # ./easyRemoteStartServerCustom.sh 127.0.0.1 127.0.0.1 40000 500 lobby.zip Hub.jar plugins/Hub/ Test Test-1 true true true

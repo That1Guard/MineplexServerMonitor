@@ -1,20 +1,15 @@
 # Mineplex Server Monitor Shell Scripts
-These are experimental and are not currently working.
 
 ## Depends
 * Shell Script knowledge
 * Linux or Mac (Windows Linux Subsystems should work)
 
 ## Setup
-* Go into [easyRemoteStartServerCustom.sh](easyRemoteStartServerCustom.sh) and change ```pathToServer``` to the path to where your servers are w/ the ```$9``` at the end.
-* Within lines 68-89 change the paths to the plugins as well as the maps.
-* Go into [easyRemoteKillServer.sh](easyRemoteKillServer.sh) and change ```pathToServer``` to the path to where your servers are w/ the ```$2``` at the end.
+* Change [easyRemoteStartServerCustom.sh](easyRemoteStartServerCustom.sh) line ```26``` (```pathToServer```) and [easyRemoteKillServer.sh](easyRemoteKillServer.sh) line ```8``` (```pathToServer```) to be the path from the script directory to where your servers are located. Make sure to add the ```$9``` at the end.
+* Change [easyRemoteStartServerCustom.sh](easyRemoteStartServerCustom.sh) line ```27``` (```pathToJars```) to be the path to where your jar files are. These jar files are things like ```craftbukkit.jar```, ```Hub.jar```, ```Arcade.jar```, ```NoCheatPlus.jar```, and there's an option for ```WorldEdit.jar```
 * Go into your Server Monitor source and change the paths to the shell scripts to where ever you cloned your scripts to be at.
 * Compile the Server Monitor and run it like a normal java app
 * You should be all set!
-
-## Todo
-For a list of the things that are still needing to be done, look [here](TODO.md). All help is appreciated.
 
 ## Trouble shooting
 * ***Cannot make directory '/var/run/screen': Permission denied:*** Run ```sudo /etc/init.d/screen-cleanup start```

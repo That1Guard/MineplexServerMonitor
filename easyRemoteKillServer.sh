@@ -5,10 +5,11 @@
 # serverAddress = $1
 # serverName = $2
 
-pathToServer = ../../$2
+pathToServer=../../$2
 
 # Stop the server
-screen -S $2 -X 'echo stop'
+screen -S $2 -X kill
+screen -S $2 -X quit
 
 sleep 3
 
