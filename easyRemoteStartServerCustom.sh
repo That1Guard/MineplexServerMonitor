@@ -95,17 +95,16 @@ unzip ../worlds/$5 -d $pathToServer/ > /dev/null
 # Make the config file & edit it for the server group
 mkdir $pathToServer/$7
 touch $pathToServer/$7/config.yml
-echo "webServer: http://127.0.0.1:8080/" >> $pathToServer/$7config.yml
-echo "serverstatus:" >> $pathToServer/$7config.yml
-echo "  group: $8" >> $pathToServer/$7config.yml
-echo "  name: $9" >> $pathToServer/$7config.yml
-echo "  us: ${10}" >> $pathToServer/$7config.yml
-echo "  connectionurl: 127.0.0.1:3306" >> $pathToServer/$7config.yml
-echo "  username: mineplex" >> $pathToServer/$7config.yml
-echo "  password: mineplex" >> $pathToServer/$7config.yml
-echo "queue:" >> $pathToServer/$7config.yml
-echo "  us: ${10}" >> $pathToServer/$7config.yml
-
+echo "webServer: http://127.0.0.1:8080/" >> $pathToServer/$7/config.yml
+echo "serverstatus:" >> $pathToServer/$7/config.yml
+echo "  group: $8" >> $pathToServer/$7/config.yml
+echo "  name: $9" >> $pathToServer/$7/config.yml
+echo "  us: ${10}" >> $pathToServer/$7/config.yml
+echo "  connectionurl: 127.0.0.1:3306" >> $pathToServer/$7/config.yml
+echo "  username: mineplex" >> $pathToServer/$7/config.yml
+echo "  password: mineplex" >> $pathToServer/$7/config.yml
+echo "queue:" >> $pathToServer/$7/config.yml
+echo "  us: ${10}" >> $pathToServer/$7/config.yml
 
 cd $pathToServer
 screen -dmS $9

@@ -9,6 +9,8 @@
 * Change [easyRemoteStartServerCustom.sh](easyRemoteStartServerCustom.sh) line ```27``` (```pathToJars```) to be the path to where your jar files are. These jar files are things like ```craftbukkit.jar```, ```Hub.jar```, ```Arcade.jar```, ```NoCheatPlus.jar```, and there's an option for ```WorldEdit.jar```
 * If you aren't using [my web api](https://github.com/randomdevlol/mineplexnodejs) for running your source, change line ```98``` in [easyRemoteStartServerCustom.sh](easyRemoteStartServerCustom.sh) to match your web server's url
 * Go into your Server Monitor source and change the paths to the shell scripts to where ever you cloned your scripts to be at.
+* Set up at least one dedicated server in your redis (see [this](https://gist.github.com/randomdevlol/5b36bdf0972b66d9ed6059b786d78d5a))
+* If your dedicated server(s) aren't the one running on the one with the Server Monitor, go into [easyRemoteStartServerCustom](easyRemoteStartServerCustom.sh) and [easyRemoteKillServer](easyRemoteKillServer.sh) and edit the script to run the commands in SSH
 * Compile the Server Monitor and run it like a normal java app
 * You should be all set!
 
