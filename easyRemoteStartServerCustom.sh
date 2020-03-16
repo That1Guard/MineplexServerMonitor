@@ -34,6 +34,7 @@ mkdir $pathToServer
 # Make server.properties file and put the properties in the file
 touch $pathToServer/server.properties
 echo "server-port=$port" >> $pathToServer/server.properties
+echo "online-mode=false" >> $pathToServer/server.properties
 
 # Copy server jar into new directory
 cp $pathToJars/craftbukkit.jar $pathToServer/
