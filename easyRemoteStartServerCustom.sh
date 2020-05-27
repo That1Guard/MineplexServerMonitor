@@ -35,6 +35,7 @@ mkdir $pathToServer
 touch $pathToServer/server.properties
 echo "server-port=$port" >> $pathToServer/server.properties
 echo "online-mode=false" >> $pathToServer/server.properties
+echo "announce-player-achievement=false" >> $pathToServer/server.properties
 
 # Copy server jar into new directory
 cp $pathToJars/craftbukkit.jar $pathToServer/
